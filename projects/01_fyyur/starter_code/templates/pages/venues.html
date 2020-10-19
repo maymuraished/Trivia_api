@@ -1,4 +1,4 @@
-{% extends 'layouts/main.html' %}
+{% extends 'layouts/venue.html' %}
 {% block title %}Fyyur | Venues{% endblock %}
 {% block content %}
 {% for area in areas %}
@@ -9,7 +9,10 @@
 			<a href="/venues/{{ venue.id }}">
 				<i class="fas fa-music"></i>
 				<div class="item">
-					<h5>{{ venue.name }}</h5>
+					<h5>{{ venue.name }}
+					<a class="edit-link" href="/venues/{{ venue.id }}/edit">Edit</a>
+					<a class="delete-link" data-id="{{ venue.id }}">Delete</a></h5>
+
 				</div>
 			</a>
 		</li>
