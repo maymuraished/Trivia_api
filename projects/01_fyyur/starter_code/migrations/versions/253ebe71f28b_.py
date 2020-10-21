@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: aaa595f218ff
+Revision ID: 253ebe71f28b
 Revises: 
-Create Date: 2020-10-13 23:33:06.653250
+Create Date: 2020-10-21 00:13:11.815777
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'aaa595f218ff'
+revision = '253ebe71f28b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,26 +22,26 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=True),
     sa.Column('city', sa.String(length=120), nullable=True),
-    sa.Column('state', sa.Enum('AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', name='statelist'), nullable=True),
+    sa.Column('state', sa.String(length=5), nullable=True),
     sa.Column('phone', sa.String(length=120), nullable=True),
     sa.Column('image_link', sa.String(length=500), nullable=True),
     sa.Column('facebook_link', sa.String(length=120), nullable=True),
-    sa.Column('genres', sa.ARRAY(sa.Enum('Alternative', 'Blues', 'Classical', 'Country', 'Electronic', 'Folk', 'Funk', 'Hip_Hop', 'Heavy_Metal', 'Instrumental', 'Jazz', 'Musical_Theatre', 'Pop', 'Punk', 'RandB', 'Reggae', 'Rock_n_Roll', 'Soul', 'Other', name='genreslist')), nullable=True),
+    sa.Column('genres', sa.ARRAY(sa.String()), nullable=True),
     sa.Column('website', sa.String(length=120), nullable=True),
     sa.Column('seeking_description', sa.String(length=120), nullable=True),
-    sa.Column('seeking_talent', sa.Boolean(), nullable=False),
+    sa.Column('seeking_venue', sa.Boolean(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('Venue',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=True),
     sa.Column('city', sa.String(length=120), nullable=True),
-    sa.Column('state', sa.Enum('AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY', name='statelist'), nullable=True),
+    sa.Column('state', sa.String(length=5), nullable=True),
     sa.Column('address', sa.String(length=120), nullable=True),
     sa.Column('phone', sa.String(length=120), nullable=True),
     sa.Column('image_link', sa.String(length=500), nullable=True),
     sa.Column('facebook_link', sa.String(length=120), nullable=True),
-    sa.Column('genres', sa.ARRAY(sa.Enum('Alternative', 'Blues', 'Classical', 'Country', 'Electronic', 'Folk', 'Funk', 'Hip_Hop', 'Heavy_Metal', 'Instrumental', 'Jazz', 'Musical_Theatre', 'Pop', 'Punk', 'RandB', 'Reggae', 'Rock_n_Roll', 'Soul', 'Other', name='genreslist')), nullable=True),
+    sa.Column('genres', sa.ARRAY(sa.String()), nullable=True),
     sa.Column('website', sa.String(length=120), nullable=True),
     sa.Column('seeking_description', sa.String(length=120), nullable=True),
     sa.Column('seeking_talent', sa.Boolean(), nullable=False),

@@ -2,3 +2,10 @@ babel
 python-dateutil==2.6.0
 flask-moment
 flask-wtf
+pip3 install SQLAlchemy
+ pip3 install Flask
+ pip3 install Flask-Migrate
+ pip3 install babel
+ pip3 install flask_moment
+ pip3 install flask_wtf
+ pip3 install psycopg2
