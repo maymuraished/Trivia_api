@@ -71,21 +71,167 @@ REVIEW_COMMENT
 This README is missing documentation of your endpoints. Below is an example for your endpoint to get all categories. Please use it as a reference for creating your documentation and resubmit your code. 
 
 Endpoints
-GET '/categories'
-GET ...
-POST ...
-DELETE ...
 
 GET '/categories'
-- Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
-- Request Arguments: None
-- Returns: An object with a single key, categories, that contains a object of id: category_string key:value pairs. 
-{'1' : "Science",
-'2' : "Art",
-'3' : "Geography",
-'4' : "History",
-'5' : "Entertainment",
-'6' : "Sports"}
+- The API Return all of the categories as List of IDs with thier values.
+- Request Arguments: None.
+- Response Arguments: One json object [categories].
+- Response Exapmle:
+{
+    "categories": {
+        "1": "Science",
+        "2": "Art",
+        "3": "Geography",
+        "4": "History",
+        "5": "Entertainment",
+        "6": "Sports"
+    }
+}
+
+
+
+GET '/questions'
+- The API Return all of the categories, the category that the user current choosen,
+  all of the questions in the choosen category[all of the questions if no category choosed], number of the questions returned.
+- Request Arguments: Two get integer parameters [page,currentCategory].
+- Request Example:
+http://127.0.0.1:5000/questions?page=1&currentCategory=6
+- Response Arguments: One json object [categories],one json list [questions], two integers [totalQuestions,currentCategory].
+- Response Example:
+{
+    "categories": {
+        "1": "Science",
+        "2": "Art",
+        "3": "Geography",
+        "4": "History",
+        "5": "Entertainment",
+        "6": "Sports"
+    },
+    "currentCategory": 6,
+    "questions": [
+        {
+            "answer": "Brazil",
+            "category": 6,
+            "difficulty": 3,
+            "id": 10,
+            "question": "Which is the only team to play in every soccer World Cup tournament?"
+        },
+        {
+            "answer": "Uruguay",
+            "category": 6,
+            "difficulty": 4,
+            "id": 11,
+            "question": "Which country won the first ever soccer World Cup in 1930?"
+        }
+    ],
+    "totalQuestions": 2
+}
+
+
+
+DELETE '/questions/<int:question_id>'
+- The API Delete a question from the database base on it ID.
+- Request Arguments: One URL integer parameter [question_id].
+- Request Example:
+http://127.0.0.1:5000/questions/20
+- Response Arguments: None.
+
+
+
+POST '/questions'
+- The API create a question in the database.
+- Request Arguments: Two json strings [question,answer], Two json integers [category,difficulty]
+- Request Example:
+{"question":"Who is the player with the most world cup league goals?","answer":"ronaldo","category":6,"difficulty":1}
+- Response Arguments: None.
+
+
+
+POST '/questions/search'
+- The API Return all the questions that include in the search term and the category the user choosen[in all of categories if user did not
+choose any] and the number of the questions found.
+- Request Arguments: One json strings [searchTerm], One json integers [currentCategory]
+- Request Example:
+{"currentCategory":null,"searchTerm":"player"}
+- Response Arguments: One json list [questions], two integers [totalQuestions,currentCategory].
+- Response Example:
+{
+    "currentCategory": null,
+    "questions": [
+        {
+            "answer": "messi",
+            "category": 6,
+            "difficulty": 1,
+            "id": 25,
+            "question": "Who is the player with the most ballon dollar?"
+        },
+        {
+            "answer": "ronaldo",
+            "category": 6,
+            "difficulty": 1,
+            "id": 26,
+            "question": "Who is the player with the most Champions league goal?"
+        },
+        {
+            "answer": "ronaldo",
+            "category": 6,
+            "difficulty": 1,
+            "id": 35,
+            "question": "Who is the player with the most world cup league goals?"
+        }
+    ],
+    "totalQuestions": 3
+}
+
+
+
+GET '/categories/<int:category_id>/questions'
+- The API Return all the questions that include in the category the user choosen and the number of the questions in it.
+- Request Arguments: One URL integer parameter [category_id].
+- Request Example:
+http://127.0.0.1:5000/categories/2/questions
+- Response Arguments: One json list [questions], two integers [totalQuestions,currentCategory].
+- Response Example:
+{
+    "currentCategory": 2,
+    "questions": [
+        {
+            "answer": "Escher",
+            "category": 2,
+            "difficulty": 1,
+            "id": 16,
+            "question": "Which Dutch graphic artist–initials M C was a creator of optical illusions?"
+        },
+        {
+            "answer": "One",
+            "category": 2,
+            "difficulty": 4,
+            "id": 18,
+            "question": "How many paintings did Van Gogh sell in his lifetime?"
+        }
+    ],
+    "totalQuestions": 2
+}
+
+
+
+POST '/quizzes'
+- The API Return any random question that is not in the previous questions list and the category the user choosen[all categories if user
+chossed all].
+- Request Arguments: One json object [quiz_category], One json list [previous_questions].
+- Request Example:
+{"quiz_category":{"type": "Sports", "id": "6"},"previous_questions":[11,25]}
+- Response Arguments: One json object [question].
+- Response Example:
+{
+    "question": {
+        "answer": "ronaldo",
+        "category": 6,
+        "difficulty": 1,
+        "id": 35,
+        "question": "Who is the player with the most world cup league goals?"
+    }
+}
 
 ```
 

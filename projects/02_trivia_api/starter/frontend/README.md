@@ -18,7 +18,7 @@ This project uses NPM to manage software dependencies. NPM Relies on the package
 npm install
 ```
 
->_tip_: **npm i** is shorthand for **npm install**
+>_tip_: **npm i** is shorthand for **npm install**9:24 PM 11/9/2020
 
 ## Required Tasks
 
